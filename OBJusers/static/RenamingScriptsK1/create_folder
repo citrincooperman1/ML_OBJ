@@ -1,0 +1,20 @@
+import os
+import pandas as pd
+
+
+def prep_dir(parent_dir, base_dir):
+    # Make directory if it doesn't exist
+    dir_name = parent_dir + base_dir
+    if not os.path.isdir(dir_name):
+        print("Creating directory {}".format(dir_name))
+        os.makedirs(dir_name, exist_ok=True)
+    return dir_name
+
+file1 = "C:\\Python\\RenamingScriptsK1\\K1 folder names.xlsx"
+
+funds_gp = pd.read_excel(file1, skiprows=1)
+
+from_client = "\\\\SSC10422\\z-drive\\Harbor Group International\\2022\\Files to client\\K-1's Printed\\"
+for x, y in funds_gp.iterrows():
+    prep_dir(from_client, y[0])
+
